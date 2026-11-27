@@ -7,6 +7,9 @@ import beanEat from "./assets/bean-eat.png";
 import beanSleep from "./assets/bean-sleep.png";
 import beanRun from "./assets/bean-run.png";
 import beanPlay from "./assets/bean-play.png";
+import beanYawn from "./assets/bean-yawn.png";
+import beanGroom from "./assets/bean-groom.png";
+import beanStretch from "./assets/bean-stretch.png";
 
 /// ENZO ///
 import enzoIdle from "./assets/enzo-idle.png";
@@ -16,6 +19,22 @@ import enzoEat from "./assets/enzo-eat.png";
 import enzoSleep from "./assets/enzo-sleep.png";
 import enzoPlay from "./assets/enzo-play.png";
 import enzoBark from "./assets/enzo-bark.png";
+import enzoYawn from "./assets/enzo-yawn.png";
+import enzoGroom from "./assets/enzo-groom.png";
+import enzotretch from "./assets/enzo-stretch.png";
+
+/// HAZEL ///
+import hazelIdle from "./assets/hazel-idle.png";
+import hazelHappy from "./assets/hazel-pet.png";
+import hazelSit from "./assets/hazel-sit.png";
+import hazelEat from "./assets/hazel-eat.png";
+import hazelSleep from "./assets/hazel-sleep.png";
+import hazelPlay from "./assets/hazel-play.png";
+import hazelPaw from "./assets/hazel-paw.png";
+import hazelYawn from "./assets/hazel-yawn.png";
+import hazelGroom from "./assets/hazel-groom.png";
+import hazeltretch from "./assets/hazel-stretch.png";
+
 
 import { useState, useEffect } from "react";
 import "./App.css";
@@ -32,6 +51,9 @@ const characters = {
     sprites: {
       idle: beanIdle,
       sit: beanSit,
+      yawn: beanYawn,
+      groom: beanGroom,
+      stretch: beanStretch,
       happy: beanHappy,
       eat: beanEat,
       sleep: beanSleep,
@@ -54,6 +76,9 @@ const characters = {
     sprites: {
       idle: enzoIdle,
       sit: enzoSit,
+      yawn: enzoYawn,
+      groom: enzoGroom,
+      stretch: enzotretch,
       happy: enzoHappy,
       eat: enzoEat,
       sleep: enzoSleep,
@@ -64,6 +89,31 @@ const characters = {
     specialName: "📢 Bark",
     specialMessage: "INTRUDER! Oh... it's a leaf.",
     sleepMessage: "Zzz... dreaming of bones..."
+  },
+
+  hazel: {
+    name: "Hazel",
+    cost: 15,
+    coinReward: 15,
+    xpReward: 20,
+    tagline: "The quiet one. But she's got opinions.",
+
+    sprites: {
+      idle: hazelIdle,
+      sit: hazelSit,
+      yawn: hazelYawn,
+      groom: hazelGroom,
+      stretch: hazeltretch,
+      happy: hazelHappy,
+      eat: hazelEat,
+      sleep: hazelSleep,
+      play: hazelPlay,
+      special: hazelPaw
+    },
+
+    specialName: "📢 Paw",
+    specialMessage: "Look at me, I listen to commands.",
+    sleepMessage: "Zzz... Dreaming of my hooman..."
   }
 };
 
@@ -175,7 +225,7 @@ function App() {
   useEffect(() => {
   if (isSleeping || sprite !== "idle") return;
 
-  const idlePoses = ["idle", "sit"];
+  const idlePoses = ["idle", "sit", "yawn", "groom", "stretch"];
 
   const timer = setInterval(() => {
     const randomIndex = Math.floor(
